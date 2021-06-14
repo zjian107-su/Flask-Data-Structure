@@ -1,3 +1,4 @@
+from hash_table import HashTable
 from sqlite3 import Connection as SQLite3Connection
 from datetime import datetime
 from sqlalchemy import event
@@ -80,6 +81,7 @@ def get_all_users_desending():
 
     return jsonify(all_users_ll.to_list())
 
+
 @app.route("/user/ascending_id", methods=["GET"])
 def get_all_users_asending():
     users = User.query.all()
@@ -126,7 +128,25 @@ def delete_user(user_id):
 
 @app.route("/blog_post/<user_id>", methods=["POST"])
 def create_blog_post(user_id):
-    pass
+    data = request.get_json()
+
+    user = User.query.filter_by(id=user_id).first()
+    if not user:
+        return jsonify({"message": "user does not exists!"}), 400
+
+    ht = HashTable(10)
+
+    ht.add_key_value("title", data["title"])
+    ht.add_key_value("body", data["body"])
+    ht.add_key_value("date", now)
+    ht.add_key_value("user_id", user_id)
+
+    # ht.print_table()
+
+    print(ht.get_value("title"))
+    print(ht.get_value("body"))
+    print(ht.get_value("date"))
+    print(ht.get_value("user_id"))
 
 
 @app.route("/user/<user_id>", methods=["GET"])

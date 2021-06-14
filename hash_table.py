@@ -1,12 +1,17 @@
+# Three laters: Data -> Node -> HashTable
+##
+
 class Node:
     def __init__(self, data=None, next_node=None):
         self.data = data
         self.next_node = next_node
 
+
 class Data:
     def __init__(self, key, value):
         self.key = key
         self.value = value
+
 
 class HashTable:
     def __init__(self, table_size):
@@ -55,21 +60,26 @@ class HashTable:
                 if node.next_node:
                     while node.next_node:
                         llist_string += (
-                            str(node.data.key) + " : " + str(node.data.value) + " --> "
+                            str(node.data.key) + " : " +
+                            str(node.data.value) + " --> "
                         )
                         node = node.next_node
                     llist_string += (
-                        str(node.data.key) + " : " + str(node.data.value) + " --> None "
+                        str(node.data.key) + " : " +
+                        str(node.data.value) + " --> None "
                     )
                     print(f"    [{i}] {llist_string}")
                 else:
                     print(f"    [{i}] {val.data.key} : {node.data.value}")
             else:
                 print(f"    [{i}] {val}")
+        print("}")
 
-ht = HashTable(4)
-ht.add_key_value("hi", "there")
-ht.add_key_value("hi", "there")
-ht.add_key_value("hi", "there")
-ht.add_key_value("dog", "there")
-ht.print_table()
+
+if "__name__" == "__mian__":
+    ht = HashTable(4)
+    ht.add_key_value("hi", "there")
+    ht.add_key_value("hi", "there")
+    ht.add_key_value("hi", "there")
+    ht.add_key_value("dog", "there")
+    ht.print_table()
