@@ -143,11 +143,6 @@ def create_blog_post(user_id):
 
     # ht.print_table()
 
-    print(ht.get_value("title"))
-    print(ht.get_value("body"))
-    print(ht.get_value("date"))
-    print(ht.get_value("user_id"))
-
 
 @app.route("/user/<user_id>", methods=["GET"])
 def get_all_blog_posts(user_id):
