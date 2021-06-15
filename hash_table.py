@@ -48,7 +48,7 @@ class HashTable:
                 node = node.next_node
 
             if key == node.data.key:
-                return noe.data.value
+                return node.data.value
         return None
 
     def print_table(self):

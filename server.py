@@ -141,7 +141,15 @@ def create_blog_post(user_id):
     ht.add_key_value("date", now)
     ht.add_key_value("user_id", user_id)
 
-    # ht.print_table()
+    new_blog_post = BlogPost(
+        title=ht.get_value("title"),
+        body=ht.get_value("body"),
+        date=ht.get_value("date"),
+        user_id=ht.get_value("user_id"),
+    )
+    db.session.add(new_blog_post)
+    db.session.commit()
+    return jsonify({{"message: new blog post created"}})
 
 
 @app.route("/user/<user_id>", methods=["GET"])
