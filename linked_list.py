@@ -1,7 +1,7 @@
-# This file shows the implementation of LinkedList with Node. It has APIs such as: init(), to_list(), print_ll(), insert_beginning(), insert_at_end(), get_user_by_id()
-# In LinkedList, if the head is not None, you can append all next nodes data into the LinkedList by moving the pointer of node and store its corresponding data.
-# When insert into an empty LinkedList (beginning), you need to adress the head nad last_node first, then add nodes. If not empty, insert in the front by connect the new node to the self.head()
-# When insert into the end of a LinkedList, if empty, use insertBeginning API, if not, append.
+# This file of "[LinkedList.py](http://linkedlist.py/)" shows the implementation of LinkedList with Node. It has APIs such as: init(), to_list(), print_ll(), insert_beginning(), insert_at_end(), get_user_by_id()
+# In LinkedList, if the head is not None, you can append all next nodes' data into the LinkedList by moving the pointer of the node and store its corresponding data.
+# When inserting into an empty LinkedList(beginning), you need to address the head nad last_node first, then add nodes. If not empty, insert in the front by connecting the new node to the self.head()
+# When inserting into the end of a LinkedList, if empty, use insertBeginning API. If not, append.
 
 class Node:
     def __init__(self, data=None, next_node=None):
