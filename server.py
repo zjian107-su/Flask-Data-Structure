@@ -10,6 +10,7 @@ import binary_search_tree
 
 import custom_q
 import random
+import stack
 
 # app
 app = Flask(__name__)
@@ -52,7 +53,9 @@ class BlogPost(db.Model):
     date = db.Column(db.Date)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
-# routes
+# routes -------------------------
+
+# add user
 
 
 @app.route("/user", methods=["POST"])
@@ -67,6 +70,8 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
     return jsonify({"message": "User created"}), 200
+
+# get user in descending ord
 
 
 @app.route("/user/descending_id", methods=["GET"])
@@ -85,6 +90,8 @@ def get_all_users_desending():
 
     return jsonify(all_users_ll.to_list())
 
+# get user in ascending ord
+
 
 @app.route("/user/ascending_id", methods=["GET"])
 def get_all_users_asending():
@@ -101,6 +108,8 @@ def get_all_users_asending():
         })
 
     return jsonify(all_users_ll.to_list())
+
+# get user
 
 
 @app.route("/user/<user_id>", methods=["GET"])
@@ -121,6 +130,8 @@ def get_one_user(user_id):
 
     return jsonify(user), 200
 
+# remove user
+
 
 @app.route("/user/<user_id>", methods=["DELETE"])
 def delete_user(user_id):
@@ -128,6 +139,8 @@ def delete_user(user_id):
     db.session.delete(user)
     db.session.commit()
     return jsonify({}), 200
+
+# create blog post
 
 
 @app.route("/blog_post/<user_id>", methods=["POST"])
@@ -155,6 +168,8 @@ def create_blog_post(user_id):
     db.session.commit()
     return jsonify({{"message: new blog post created"}})
 
+# return post body
+
 
 @app.route("/blog_post/<blog_post_id>", methods=["GET"])
 def get_all_blog_posts(blog_post_id):
@@ -177,6 +192,8 @@ def get_all_blog_posts(blog_post_id):
         return jsonify({"message": "post not found"})
 
     return jsonify(post)
+
+# return chr ord sum in a post body
 
 
 @app.route("/blog_post/numeric_body", methods=["GET"])
@@ -210,9 +227,22 @@ def get_numeric_post_bodies():
     return jsonify(return_list)
 
 
-@app.route("/blog_post/<blog_post_id>", methods=["DELETE"])
-def delete_blog_post(blog_post_id):
-    pass
+@app.route("/blog_post/delete_last_10", methods=["DELETE"])
+def delete_last_10():
+
+    blog_posts = BlogPost.query.all()
+
+    s = stack.Stack()
+
+    for post in blog_posts:
+        s.push(post)
+
+    for _ in range(10):
+        post_to_delete = s.pop()
+        db.session.delete(post_to_delete.data)
+        db.session.commit()
+
+    return jsonify({"message": "success"})
 
 
 if __name__ == "__main__":
