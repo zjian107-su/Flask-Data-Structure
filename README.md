@@ -1,8 +1,9 @@
-# flask
+# Data Structures For Python Developers (w/ Flask)
 
-## Learning Link on YouTube(17:08) - https://www.youtube.com/watch?v=74NW-84BqbA 
+## Porject Description
+This project uses LinkedList to implement binary search tree, queue, stack, with RestFul API. Flask, sqlite3, sqlalchemy are used.
 
-## Codes
+## Others - Dev Notes
 - Generate env: 
     `conda create env -n flask`
     `conda activate flask`
@@ -12,3 +13,4 @@
     `from server import db`
     `db.create_all()`
     `exit()`
+
