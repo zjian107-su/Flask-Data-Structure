@@ -1,10 +1,19 @@
 # Data Structures (w/ Flask)
 
 ## Porject Description
-This project uses LinkedList to implement binary search tree, queue, stack, linked list, hashtable with RestFul API. 
+This project implements the following data structures with RESTful API: 
+- binary search tree
+- queue and stack
+- linked list
+- hashtable 
 
 ## Requirements
-PostMan, DB Browser for SQLite, Python, Flask, sqlite3, sqlalchemy.
+- PostMan
+- DB Browser for SQLite
+- Python
+- Flask
+- sqlite3
+- sqlalchemy.
 
 ## Screenshots
 1. delete_last_10.png
